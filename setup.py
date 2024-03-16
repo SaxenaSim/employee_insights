@@ -15,6 +15,7 @@ setup(
         'setuptools==69.1.1',
         'wheel==0.42.0',
         'twine==5.0.0',
+        'pre-commit==3.6.2'
     ],
     package_data={'employee_insights': ['logs/*', 'tests/*.py']},
     classifiers=[
