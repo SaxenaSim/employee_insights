@@ -4,15 +4,17 @@ formatters:
     format: "%(asctime)s - %(levelname)s - %(message)s"
 
 handlers:
-  file_size_handler:
-    class: logging.FileHandler
+  rotating_file_handler:
+    class: logging.handlers.RotatingFileHandler
     formatter: simple
     filename: logs/my_logfile.log
+    maxBytes: 10240
+    backupCount: 3
 
 loggers:
   file_size_logger:
     level: DEBUG
-    handlers: [file_size_handler]
+    handlers: [rotating_file_handler]
 
 # root:
 #   level: DEBUG
