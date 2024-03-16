@@ -1,0 +1,4 @@
+emp_code first_name last_name     designation date_of_joining  salary supervisor
+  EMP013    Phyllis     Bryan           Nurse      1998-07-23 87915.5     EMP001
+  EMP014   Benjamin     Burch Housing manager      1999-08-07 42819.9     EMP005
+  EMP050   Victoria     Perry           Nurse      2000-05-11 68539.6     EMP005
