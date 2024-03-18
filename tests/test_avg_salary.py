@@ -1,5 +1,5 @@
 import pytest
-from input.employee_details import Employee
+from src.employee_details import Employee
 
 
 class TestAvgSalary:

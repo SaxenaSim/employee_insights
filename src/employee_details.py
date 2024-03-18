@@ -10,16 +10,18 @@ class Employee:
 
         # config_dir = os.path.join(root_dir, 'configuration')
 
-        # file_name = 'config.yaml'
+        #file_name = 'config.yaml'
 
-        # main_script_dir = os.path.dirname(os.path.abspath(__file__))
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root_dir = os.path.dirname(current_dir)
+        config_dir = os.path.join(project_root_dir, 'configuration')
 
-        # config_file_path = os.path.join(main_script_dir, '..', 'config.yaml')
 
-        # config_logging_path = os.path.join(main_script_dir,"..","logging_config.yaml")
-        # config_file_path = os.path.join(config_dir, file_name)
+        config_file_path = os.path.join(config_dir,'config.yaml')
 
-        with open("configuration/config.yaml", "r") as config_file:
+        config_logging_path = os.path.join(config_dir,"logging_config.yaml")
+        
+        with open(config_file_path, "r") as config_file:
             self.db_config = yaml.safe_load(config_file)
         self.conn = mysql.connector.MySQLConnection(
             user=self.db_config["database"]["user"],
@@ -28,7 +30,7 @@ class Employee:
             port=self.db_config["database"]["port"],
             database=self.db_config["database"]["database"],
         )
-        with open("configuration/logging_config.yaml", "r") as f:
+        with open(config_logging_path, "r") as f:
             self.logging_config = yaml.safe_load(f)
             logging.config.dictConfig(self.logging_config)
 
