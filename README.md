@@ -39,6 +39,8 @@ This Python package allows users to process employee data stored in an Excel fil
 
 ## Usage
 
+Upon finishing the cloning of the repository, start by executing all scripts located in the db_scripts folder to configure your database in accordance with this code.
+
 Once the package is installed, you can use the package as follows:
 
 1. **Run the utility:**
@@ -54,7 +56,7 @@ Once the package is installed, you can use the package as follows:
    ```
    c. Call methods or access attributes of object:
    ```bash
-   result = obj.find_matches()
+   result = obj.filter_employee("Enter a date in YYYY-MM-DD format")
    print(result)
    ```
 
