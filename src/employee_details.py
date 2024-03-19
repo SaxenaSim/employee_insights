@@ -46,8 +46,6 @@ class Employee:
     in the database connected through 'conn'. The retrieved data is then loaded into a Pandas DataFrame,
     which is stored in the 'employee_df' attribute of the class instance.
 
-    Returns:
-        None. The method updates the 'employee_df' attribute of the class instance.
     """
 
     def create_dataframe(self):
@@ -86,8 +84,7 @@ class Employee:
     Saves the employee data to a text file.
 
     This method takes a DataFrame of employee data as input and writes it to a text file in the 'output' directory.
-    The filename is constructed with a timestamp to ensure uniqueness. The employee data is written to the file
-    without an index column. If successful, the filename of the saved file is returned.
+    The filename is constructed with a timestamp to ensure uniqueness. If successful, the filename of the saved file is returned.
 
     Args:
         employees (pandas.DataFrame): DataFrame containing employee data.
