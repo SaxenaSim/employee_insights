@@ -6,19 +6,11 @@ import os
 
 class Employee:
     def __init__(self):
-        # root_dir = os.path.abspath(os.sep)
-
-        # config_dir = os.path.join(root_dir, 'configuration')
-
-        #file_name = 'config.yaml'
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root_dir = os.path.dirname(current_dir)
         config_dir = os.path.join(project_root_dir, 'configuration')
-
-
         config_file_path = os.path.join(config_dir,'config.yaml')
-
         config_logging_path = os.path.join(config_dir,"logging_config.yaml")
         
         with open(config_file_path, "r") as config_file:
