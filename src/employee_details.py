@@ -9,10 +9,10 @@ class Employee:
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root_dir = os.path.dirname(current_dir)
-        config_dir = os.path.join(project_root_dir, 'configuration')
-        config_file_path = os.path.join(config_dir,'config.yaml')
-        config_logging_path = os.path.join(config_dir,"logging_config.yaml")
-        
+        config_dir = os.path.join(project_root_dir, "configuration")
+        config_file_path = os.path.join(config_dir, "config.yaml")
+        config_logging_path = os.path.join(config_dir, "logging_config.yaml")
+
         # Load database configuration from YAML file and establish connection
         with open(config_file_path, "r") as config_file:
             # Read database configuration parameters from YAML file
@@ -25,20 +25,20 @@ class Employee:
             port=self.db_config["database"]["port"],
             database=self.db_config["database"]["database"],
         )
-        
+
         # Load logging configuration from YAML file and configure logging
         with open(config_logging_path, "r") as f:
             # Read logging configuration parameters from YAML file
             self.logging_config = yaml.safe_load(f)
         # Configure logging using the retrieved configuration
         logging.config.dictConfig(self.logging_config)
-        
+
         # Initialize logger and employee DataFrame
         self.logger = logging.getLogger("file_size_logger")
         self.employee_df = pd.DataFrame()
         # Create DataFrame containing employee data
         self.create_dataframe()
-        
+
     """
     Creates a Pandas DataFrame containing employee data from the database.
 
@@ -52,13 +52,13 @@ class Employee:
         self.employee_df = pd.read_sql_query("SELECT * FROM employee", self.conn)
 
     """
-    Filters the employee DataFrame based on the date of joining, returning a DataFrame 
-    containing only the employees who joined after the specified input_date. 
+    Filters the employee DataFrame based on the date of joining, returning a DataFrame
+    containing only the employees who joined after the specified input_date.
     If successful, logs the filtered DataFrame; otherwise, logs any encountered exceptions.
-    
+
     Args:
         input_date (str or pandas.Timestamp): The filter date in string format or as a pandas Timestamp.
-    
+
     Returns:
         pandas.DataFrame or None: A DataFrame containing filtered employee data if successful, otherwise None.
     """
@@ -79,7 +79,7 @@ class Employee:
             self.logger.info("::Entering into Filter exception::")
             self.logger.error(e)
             return None
-        
+
     """
     Saves the employee data to a text file.
 
@@ -107,7 +107,7 @@ class Employee:
             self.logger.info("::Entering into save_data_to_file exception::")
             self.logger.error(e)
             return False
-        
+
     """
     Calculates the average salary for employees with the given designation.
 
@@ -125,8 +125,9 @@ class Employee:
     def avg_salary(self, designation):
         try:
             self.logger.info(":: ENtering into avg_salary method::")
+            designation_lower = designation.lower()
             filtered_df = self.employee_df[
-                self.employee_df["designation"] == designation
+                self.employee_df["designation"].str.lower() == designation_lower
             ]
             self.logger.info("::Filtered df::")
             self.logger.debug(filtered_df)
@@ -138,7 +139,7 @@ class Employee:
             self.logger.info("::Entering into average_salary exception")
             self.logger.error(e)
             return None
-        
+
     """
     Saves the average salary for a given position to a text file.
 
@@ -172,8 +173,6 @@ class Employee:
             return False
 
 
-
-
 if __name__ == "__main__":
 
     input_date = input("Enter date of joining in YYYY-MM-DD format")
@@ -182,10 +181,10 @@ if __name__ == "__main__":
 
     employees = obj.filter_employee(input_date)
     obj.save_data_to_file(employees)
-    
+
     print("Want average for a particular designation(Y/N) :")
-    x=input()
-    if x=="Y":
+    x = input()
+    if x == "Y":
         designation = input("Enter designation : ")
 
         salary = obj.avg_salary(designation)

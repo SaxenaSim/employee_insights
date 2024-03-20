@@ -18,9 +18,9 @@ setup(
         "pandas==2.2.1",
         "pandasql==0.7.3",
     ],
-    #package_data={'employee_insights': ['configuration/*']},
-    #package_data={'employee_insights': ["output/*", "logs/*", "configuration/*"]},
-    #package_data={'employee_insights':[config]},
+    # package_data={'employee_insights': ['configuration/*']},
+    # package_data={'employee_insights': ["output/*", "logs/*", "configuration/*"]},
+    # package_data={'employee_insights':[config]},
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
